@@ -13,6 +13,7 @@ The methodology implemented in this project involves:
 - Extracting the tips of the index finger and thumb from source videos using pose estimation techniques.
 - Replicating the three features used in Yang et al.'s work.
 - Implementing a classifier algorithm based on their methodology.
+- Data agumentation by rotating and mirroring the videos.
 
 Additional Contributions:
 Originally, this project intended to collaborate with a doctor from the HUGG College Hospital to record and share a new dataset, with a simple to use web solution, a Video Collection Platform. However, due to the extended approval process required by the university's ethics committee, we were unable to complete this within our timeframe. Despite this, the platform and methodology developed here are shared with the community. This platform is designed for medical professionals to track patients' disease progression recording their sessions, while it generates a dataset that can be used for training AI-assisted tools, aiding doctors in early diagnosis. Furthermore, the code and methodology provided can be used by other researchers to collect similar datasets. It is also adaptable for various tasks beyond recording hand videos, offering a versatile tool for different research and medical applications.
