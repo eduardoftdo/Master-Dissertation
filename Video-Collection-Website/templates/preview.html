@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="center-text">Teste de Finger Tapping</h1>
+<p class="center-text">Preview do vídeo gravado</p>
+
+
+<div class="flex-container"></div>
+    <div class="video-section"></div>
+        <video id="recordedVideoPreview" width="640" height="480" controls>
+            <!-- <source src="/uploads/video.mp4" type="video/mp4"> -->
+            <!-- <source src={{ url_for('static', filename='video.mp4') }} type="video/mp4"> -->
+            <source src="{{ url_for('uploaded_video', filename=video_filename) }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- <br> -->
+    </div>
+
+    <div class="feedback-form-section">
+        <!-- <form action="/save_feedback" method="post"> -->
+        <form action="/save_video" method="post">
+            <!-- <label for="participant">Participante:</label>
+            <select name="participant_id" required>
+                {% for p in participants %}
+                <option value="{{ p.id }}">{{ p.name }}</option>
+                {% endfor %}
+            </select> -->
+            <label for="participant">Participante: <b>{{participant.name}}</b></label>
+
+            <fieldset>
+                <legend>Avaliação MDS-UPDRS:</legend>
+                <input type="radio" id="score0" name="score" value="0">
+                <label for="score0">0</label>
+
+                <input type="radio" id="score1" name="score" value="1">
+                <label for="score1">1</label>
+
+                <input type="radio" id="score2" name="score" value="2">
+                <label for="score2">2</label>
+
+                <input type="radio" id="score3" name="score" value="3">
+                <label for="score3">3</label>
+
+                <input type="radio" id="score4" name="score" value="4">
+                <label for="score4">4</label>
+            </fieldset>
+
+            <label for="comment">Comentários:</label>
+            <textarea name="comment" id="comment" rows="4"></textarea>
+
+            <!-- <label for="participant">Participante:</label>
+            <select name="participant" id="participant" required>
+                {% for participant in participants %}
+                    <option value="{{ participant.id }}">{{ participant.name }}</option>
+                {% endfor %}
+            </select>
+ -->
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+</div>
+
+
+
+<button id="reRecordBtn" class="button-block-center button-red">Regravar vídeo</button>
+<script>
+    // document.getElementById('reRecordBtn').addEventListener('click', function() {
+    //     window.location.href = '/record'; 
+    // });
+    document.getElementById('reRecordBtn').addEventListener('click', function(event) {
+        var confirmAction = confirm("Tem certeza que deseja regravar o vídeo? A gravação atual será perdida.");
+        if (confirmAction) {
+            // User confirmed they want to re-record, proceed with the redirection
+            console.log("Re-record confirmed");
+            window.location.href = '/record';
+        } else {
+            // User canceled, prevent the default button action
+            console.log("Re-record canceled");
+            event.preventDefault();
+        }
+    });
+
+    // document.addEventListener('keydown', function(event) {
+    //     if (event.keyCode === 32) { //spacebar key code 32
+    //         event.preventDefault();
+    //         window.location.href = '/record';
+    //     }
+    // });
+
+    document.querySelector("form").addEventListener("submit", function(e) {
+    var radios = document.getElementsByName("score");
+    var isValid = false;
+
+    for (let radio of radios) {
+        if (radio.checked) {
+            isValid = true;
+            break;
+        }
+    }
+
+    if (!isValid) {
+        e.preventDefault(); // prevent form submission
+        alert("Escolha uma nota para avaliar o vídeo."); // or any other custom message or styling you want
+    }
+});
+</script>
+
+{% endblock %}

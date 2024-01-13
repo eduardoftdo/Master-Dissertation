@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="center-text">Adicionar novo participante</h2>
+
+<a href="{{ url_for('static', filename='pdf/TCLE.pdf') }}" download="TCLE.pdf" class="button center-container">Caso precise, clique aqui para baixar o TCLE</a>
+
+<form action="{{ url_for('add_participant') }}" method="post">
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="date_of_birth">Data de nascimento:</label>
+    <input type="date" id="date_of_birth" name="date_of_birth" required>
+
+    <label for="pathology">Patologia:</label>
+    <select name="pathology" id="pathology">
+        <option value="Parkinson">Parkinson</option>
+        <option value="Tremor Essencial">Tremor Essencial</option>
+        <option value="Outro">Outro</option>
+    </select>
+
+    <label for="gender">Gênero:</label>
+    <select name="gender" id="gender">
+        <option value="F">Feminino</option>
+        <option value="M">Masculino</option>
+        <option value="O">Outro</option>
+    </select>
+
+    <input type="submit" value="Enviar">
+</form>
+
+{% endblock %}

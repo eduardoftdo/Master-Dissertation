@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="center-text">Lista de vídeos</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Participante</th>
+            <th>Patologia</th>
+            <!-- <th>Video URL</th> -->
+            <th>Data</th>
+            <th>Laudo MDS-UPDRS</th>
+            <th>Comentários</th>
+            <th>Gravado por</th>
+            <th>Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for video, creator_name in videos|reverse %}
+        <tr>
+            <td>{{ video.participant.name }}</td>
+            <td>{{ video.participant.pathology }}</td>
+            <!-- <td>{{ video.url }}</td> -->
+            <td>{{ video.created_at.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+            <td>{{ video.score }}</td>
+            <td class="comment-cell">{{ video.comment }}</td>
+            <td class="comment-cell">{{ creator_name }}</td>
+            <td>
+                <a href="javascript:void(0);" onclick="toggleVideo(this, '{{ url_for('uploaded_video', filename=video.url) }}')">Ver Vídeo</a>
+            </td>
+        </tr>
+        <tr class="video-container" style="display: none;">
+            <td colspan="7">
+                <!-- <video width="100%" controls> -->
+                <video width="640" height="480" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    function toggleVideo(link, videoSrc) {
+        // Find the next 'tr' element which contains the video
+        var videoContainer = link.closest('tr').nextElementSibling;
+        var videoElement = videoContainer.querySelector('video');
+    
+        // Check if we are opening or closing the video
+        if (videoContainer.style.display === 'none') {
+            // Update the video source and load the video
+            videoElement.querySelector('source').src = videoSrc;
+            videoElement.load();
+            // Show the video container
+            videoContainer.style.display = '';
+            // Scroll to the video container smoothly
+            videoContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            // Hide the video container
+            videoContainer.style.display = 'none';
+            // Empty the video source
+            videoElement.querySelector('source').src = '';
+            videoElement.load();
+        }
+    }
+</script>
+
+{% endblock %}

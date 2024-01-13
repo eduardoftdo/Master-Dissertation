@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="center-text">Lista de participantes</h2>
+
+<!-- flash-message center-text -->
+
+<!-- {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="flash-message center-text {{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %} -->
+
+
+<!-- <button id="addParticipantBtn" class="button-block-center button-small">Adicionar participante</button>
+<script>
+    document.getElementById('addParticipantBtn').addEventListener('click', function() {
+        window.location.href = '/add_participant'; 
+    });
+</script> -->
+
+<!-- <form action="{{ url_for('list_participants') }}" method="get">
+    <input type="text" name="search" placeholder="Busca por nome de participante">
+    <input type="submit" value="Buscar">
+</form> -->
+
+<form class="search-form">
+    <input type="text" name="search" placeholder="Busca por nome de participante">
+    <input type="submit" value="Buscar">
+</form>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Patologia</th>
+            <th>Data de nascimento</th>
+            <th>Gênero</th>
+            <th>Vídeos</th>
+            <th>Criado por</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- {xxx for participant in participants xxx} -->
+        {% for participant, video_count, creator_name in participants %}
+        <tr>
+            <td>{{ participant.id }}</td>
+            <td>{{ participant.name }}</td>
+            <td>{{ participant.pathology }}</td>
+            <td>{{ participant.date_of_birth.strftime('%d/%m/%Y') }}</td>
+            <td>{{ participant.gender }}</td>
+            <td>{{ video_count }}</td>
+            <td>{{ creator_name }}</td>
+            <td>
+                <a href="{{ url_for('view_participant', id=participant.id) }}">Visualizar</a>
+                <!-- You can also add 'Edit' or 'Delete' links here -->
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Plataforma de coleta de vídeos</title>
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="nav-brand">
+            {% if session.user_id %}
+                <a href="{{ url_for('home') }}">
+            {% else %}
+                <a href="{{ url_for('index') }}">
+            {% endif %}
+                <img src="{{ url_for('static', filename='logo_nav.png') }}" alt="Logo da universidade">
+                Plataforma de coleta de vídeos</a>
+        </div>
+        <ul class="nav-items">
+            {% if session.user_id %}
+                <li><a href="{{ url_for('list_participants') }}">Listar participantes</a></li>
+                <li><a href="{{ url_for('add_participant') }}">Adicionar participante</a></li>
+                <li><a href="{{ url_for('list_videos') }}">Listar vídeos</a></li>
+                <li><a href="{{ url_for('instructions') }}">Gravar vídeo</a></li>
+                <li><a href="{{ url_for('logout') }}" onclick="return confirm('Tem certeza que deseja deslogar?')">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+<main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message center-text {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}
+
+    {% endblock %}
+</main>
+
+<!-- <footer>
+    <p>UNIRIO - Universidade Federal do Estado do Rio de Janeiro</p>
+    <p>PPGI - Programa de Pós-Graduação em Informática</p>
+    <p>HUGG - Hospital Universitário Gaffrée e Guinle</p>
+</footer> -->
+
+</body>
+</html>

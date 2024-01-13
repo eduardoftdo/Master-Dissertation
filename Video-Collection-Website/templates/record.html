@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<h1 class="center-text">Teste de Finger Tapping</h1>
+<p class="center-text">Selecione um participante e clique no botão abaixo ou aperte a barra de espaço para iniciar a gravação</p>
+
+<div class="center-container">
+    <label for="participant">Participante:</label>
+    <select name="participant_id" id="participantDropdown" required onchange="checkSelection()">
+        <!-- <option value="" disabled selected>Selecione um participante</option> -->
+        <option value="" disabled {{ 'selected' if not selected_participant_id }}>Selecione um participante</option>
+        {% for p in participants %}
+        <!-- <option value="{{ p.id }}">{{ p.name }}</option> -->
+        <option value="{{ p.id }}" {{ 'selected' if p.id == selected_participant_id }}>{{ p.name }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<video id="video" width="640" height="480" autoplay playsinline></video>
+
+<div id="timer" class="center-text-big">Duração: 10 segundos</div>
+
+<div class="recording-reminder center-text" id="recording-reminder">
+    <p>A gravação irá começar assim que apertar o botão</p>
+</div>
+
+<button id="startRecording" class="button-block-center" disabled>Iniciar gravação</button>
+
+<script>
+// Request webcam access immediately upon page load
+navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => {
+        document.getElementById('video').srcObject = stream;
+        // document.getElementById('startRecording').disabled = false; // Activate the start recording button once permission is granted
+    })
+    .catch(err => {
+        console.error(err);
+        alert('Acesso à câmera necessário para gravação de vídeo');
+    });
+
+$(document).ready(function() {
+    $('#participantDropdown').select2({
+        placeholder: 'Selecione um participante para gravar',
+        // allowClear: true
+    });
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  // Call checkSelection when the page is fully loaded, including the dropdown
+  checkSelection();
+});
+
+function checkSelection() {
+    const dropdown = document.getElementById("participantDropdown");
+    const button = document.getElementById("startRecording");
+    if (dropdown.value !== "") {
+        button.disabled = false;
+    } else {
+        button.disabled = true;
+    }
+}
+
+document.getElementById('startRecording').addEventListener('click', function() {
+    const button = document.getElementById('startRecording');
+    const div_recording = document.getElementById('recording-reminder');
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+    // navigator.mediaDevices.getUserMedia({video: {frameRate: { exact: 30 }}})
+        .then(stream => {
+            const video_length = 10;
+            button.textContent = "Gravando...";
+            button.disabled = true; 
+
+            div_recording.style.display = 'none';
+
+            const video = document.getElementById('video');
+            video.srcObject = stream;
+            const mediaRecorder = new MediaRecorder(stream);
+            let videoChunks = [];
+
+            mediaRecorder.ondataavailable = function(e) {
+                videoChunks.push(e.data);
+            };
+
+            mediaRecorder.onstop = function() {
+                const blob = new Blob(videoChunks, { type: 'video/mp4' });  // Adjust MIME type as necessary
+                uploadVideo(blob);
+            };
+
+            mediaRecorder.start();
+
+            startCountdown(video_length); // Start the countdown timer
+
+            // Schedule recording to stop after 10 seconds
+            setTimeout(() => {
+                mediaRecorder.stop();
+                stream.getTracks().forEach(track => track.stop());
+            }, video_length * 1000); // 10000
+        })
+        .catch(err => console.error(err));
+});
+
+function startCountdown(seconds) {
+    const timerElement = document.getElementById('timer');
+    let remaining = seconds;
+
+    const interval = setInterval(() => {
+        remaining--;
+        timerElement.textContent = `${remaining} segundos restantes`;
+
+        if (remaining == 1) {
+            timerElement.textContent = `${remaining} segundo restante`;
+        }
+
+        if (remaining <= 0) {
+            clearInterval(interval);
+            timerElement.textContent = "Gravação concluída!";
+        }
+    }, 1000);
+}
+
+function uploadVideo(blob) {
+    const formData = new FormData();
+    formData.append('video', blob, 'video.mp4');
+
+    const participantId = document.querySelector("#participantDropdown").value;
+    formData.append('participant_id', participantId);
+
+    fetch('/upload', {
+        method: 'POST',
+        body: formData
+    }).then(response => response.json())
+      //.then(data => console.log(data))
+      .then(data => {console.log(data); window.location.href = "/preview";})
+      //.then(data => {console.log(data); window.location.href = `/preview?participant_id=${participantId}`;})
+      .catch(error => console.error('Error:', error));
+}
+
+$('#participantDropdown').on('select2:select', function (e) {
+    $('#participantDropdown').select2('close'); // Close the dropdown    
+    $('#video').focus(); // Force focus on video to prevent opening dropdrown when pressing the spacebar
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode === 32) { //spacebar key code 32
+        event.preventDefault();
+
+        var videoElement = document.getElementById('video');
+        videoElement.focus();
+        videoElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        document.getElementById('startRecording').click();
+    }
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,813 @@
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #333;
+    color: #f4f4f4;
+}
+
+p {
+    font-size: 18px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.button-block-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.center-text-big {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* .center-both {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+} */
+
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    padding-top: 20px;
+}
+
+#video {
+    transform: scaleX(-1); /* Flips the video element horizontally */
+    -webkit-transform: scaleX(-1); /* For Safari and older browsers */
+}
+
+.img-logo {
+    max-width: 100%;
+    max-height: 120px;
+}
+
+button, input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    max-width: 600px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 20px;
+}
+
+.button-small {
+    max-width: 300px;
+    font-size: 14px;
+}
+
+.button-red {
+    background-color: #ff2200;
+    max-width: 200px;
+}
+
+.button-red:hover {
+    background-color: #b30000;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+
+
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;  /* Align the starting positions of the children elements to the top of the container */
+    gap: 20px;
+}
+
+/* .video-section, .feedback-form-section {
+    flex: 1;
+    padding: 10px;
+} */
+
+.video-section {
+    flex: 1;
+    padding: 10px;
+    max-width: 50%;
+}
+
+.feedback-form-section {
+    /* flex: 1;
+    padding: 10px;
+    max-width: 30%;
+    justify-content: center;
+    align-items: center; */
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+}
+
+
+
+/* Style for radio button section (Score) */
+fieldset {
+    margin-bottom: 10px;
+}
+
+/* Style for the comments section */
+textarea {
+    width: 100%;
+    resize: vertical; /* Allows vertical resizing, but not horizontal */
+
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+/* General style for radio buttons and their labels */
+input[type="radio"],
+label {
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+/* General form styling */
+form {
+    max-width: 400px; /* You can adjust this */
+    margin: 20px auto; /* Centers the form */
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border: 1px solid #555;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style labels - BREAKING MDS-UPDRS SCORE FORM */
+/* label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+} */
+
+/* Style input fields */
+input[type="text"], input[type="date"], select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect for the submit button */
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+input[type="submit"]:hover.btn-delete {
+    background-color: #b30000;
+}
+
+input[type="text"], input[type="date"], select {
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+
+
+/* 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #d3d3d3;
+    padding: 8px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #e0e0e0;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+ */
+
+ table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #e0e0e0; /* Light text color for dark background */
+}
+
+th, td {
+    border: 1px solid #555;  /* Darker border for dark mode */
+    padding: 8px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;  /* Darker header background */
+}
+
+tr:nth-child(even) {
+    background-color: #222;  /* Even darker row shading for every other row */
+}
+
+tr:hover {
+    background-color: #444;  /* Dark hover effect */
+}
+
+.comment-cell {
+    max-width: 250px; /* adjust as needed */
+    /* white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+    overflow: visible;
+    white-space: normal;
+}
+
+/* .comment-cell:hover {
+    overflow: visible;
+    white-space: normal;
+} */
+
+a {
+    text-decoration: none;
+    color: #40a9ff;  /* Slightly brighter blue for better visibility on dark */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/* Styles for flash messages */
+.flash-messages {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flash-message {
+    padding: 10px 20px;
+    background-color: #4CAF50;  /* A green color indicating success */
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);  /* A subtle shadow to give some depth */
+    margin-bottom: 10px;  /* Spacing between multiple messages */
+    max-width: 400px;  /* Max width for better readability */
+    width: 100%;  /* Take the full width */
+    margin: 10px auto;
+    text-align: center;  /* Center the text */
+}
+
+/* If you want to add styles for error or warning messages in the future, you can use additional classes. For instance: */
+.flash-message.error {
+    background-color: #f44336;  /* A red color indicating error */
+}
+
+.flash-message.warning {
+    background-color: #ff9800;  /* An orange color indicating warning */
+}
+
+
+
+
+
+/* Base Button Styling */
+.btn {
+    padding: 8px 15px;
+    border-radius: 4px;
+    /* font-weight: bold; */
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* Edit Button Styling */
+.btn-edit {
+    background-color: #2d7df6;  /* Blue color */
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.btn-edit:hover {
+    background-color: #185bd1;  /* A darker blue on hover */
+    text-decoration: none;
+}
+
+/* Delete Button Styling */
+.btn-delete {
+    background-color: #e74c3c;  /* Red color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"].btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 0px;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;  /* A darker red on hover */
+}
+
+/* To ensure that the form takes up minimal space */
+.delete-form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+}
+
+
+
+.search-form {
+    display: flex;
+    align-items: center;  /* This will vertically align the elements */
+    max-width: 600px;     /* Adjust based on your preference */
+    margin: 0 auto 20px;  /* Centers the search form and adds margin at the bottom */
+    margin-top: 20px;
+}
+
+.search-form input[type="text"] {
+    flex-grow: 1; /* Allows the input to grow and take up available space */
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border: 1px solid #555;
+    /*border-radius: 4px 0 0 4px;  /* Rounded corners on the left side */
+    /*border-right: none;  /* Remove right border to blend with the button */
+    margin-right: 10px;
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+.search-form input[type="submit"] {
+    /* padding: 5px 15px; */
+    border: 1px solid #555;
+    /*border-radius: 0 4px 4px 0;  /* Rounded corners on the right side */
+    background-color: #333;  /* Darker button background */
+    color: #e0e0e0;  /* Light text color for the button */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 0px;
+    font-size: 14px;
+    width: 200px;
+    padding: 7px;
+}
+
+/* .search-form input[type="submit"]:hover {
+    background-color: #e0e0e0;
+} */
+
+
+
+
+
+
+/* Common styling for form elements */
+form {
+    color: #e0e0e0; /* Light text color for dark mode */
+}
+
+/* Text and Date Inputs */
+form input[type="text"], form input[type="date"], form input[type="password"] {
+    background-color: #444;
+    color: #e0e0e0;
+    border: 1px solid #555;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    padding: 5px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+form input[type="text"]:focus, form input[type="date"]:focus {
+    border-color: #777;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Select Dropdown */
+form select {
+    background-color: #444;
+    color: #e0e0e0;
+    border: 1px solid #555;
+    padding: 5px;
+}
+
+form select:focus {
+    border-color: #777;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Submit Button */
+/* form input[type="submit"] {
+    background-color: #555;
+    color: #e0e0e0;
+    border: none;
+    padding: 7px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+} */
+
+form input[type="submit"]:hover {
+    background-color: #185bd1;
+}
+
+/* form label {
+    margin-right: 10px;
+    display: block;
+    margin-bottom: 10px;
+} */
+
+
+
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    color: #007BFF;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.pagination a:hover {
+    text-decoration: underline;
+}
+
+.pagination-title {
+    margin-top: 30px;
+    margin-bottom: -20px;
+    font-size: 16px;
+}
+
+
+
+
+
+/* Home */
+
+.welcome-banner {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #2a2a2a;  /* Adjust based on your dark mode theme */
+    color: #fff;
+}
+
+.quick-actions {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.quick-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #1a1a1a; /* Dark background for the whole section */
+    border-radius: 5px;
+}
+
+.quick-links .link {
+    border: 1px solid #333; /* Darker border for the cards */
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    background-color: #282828; /* Card background */
+    transition: box-shadow 0.3s ease;
+}
+
+.quick-links .link:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+}
+
+.quick-links a {
+    font-size: 1.2em;
+    color: #4da6ff; /* Lighter link color for contrast */
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.quick-links p {
+    font-size: 0.9em;
+    color: #ccc; /* Lighter text color for readability */
+    margin-top: 5px;
+}
+
+.link {
+    cursor: pointer;
+}
+
+.action-btn {
+    padding: 10px 20px;
+    background-color: #4a4a4a; /* Adjust based on your dark mode theme */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+    background-color: #646464;
+}
+
+.recent-activity, .dashboard-stats {
+    /* margin: 20px 0; */
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.dashboard-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.stat {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #1f1f1f; /* Adjust based on your dark mode theme */
+    color: #fff;
+}
+
+
+
+/* Base */
+/* General and global styles */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2a2a2a;  /* Adjust based on your dark mode theme */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: #1f1f1f;  /* Adjust based on your dark mode theme */
+    margin-bottom: 20px;
+}
+
+.nav-brand a {
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+}
+
+.nav-brand img {
+    height: 24px;  /* or whatever height you desire */
+    margin-right: 10px; 
+    vertical-align: middle; 
+    padding-top: 0px;
+}
+
+.nav-items {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-items li a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.nav-items li a:hover {
+    color: #007BFF;  /* Adjust based on your dark mode theme */
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    clear:both;
+    width: 100%;
+    height: 20px;
+    background-color: #333333;
+    border-top: 1px solid #444444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #9f9f9f;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+
+
+
+
+/* Set the width of the select2 dropdown */
+.select2-container {
+    width: 30% !important; /* Adjust the width percentage as per your requirements */
+    margin: 0 auto;
+    display: block;
+}
+
+/* Dark mode styles for select2 */
+.select2-dropdown {
+    background-color: #333;
+    border-color: #555;
+}
+
+.select2-search__field {
+    color: #fff;
+    background-color: #333; /* Setting background to match dropdown's background */
+}
+
+.select2-results__option {
+    color: #fff;
+    background-color: #333;
+    text-align: left; /* Ensure text inside options is left-aligned */
+}
+
+.select2-results__option--highlighted {
+    background-color: #555;
+}
+
+.select2-selection__rendered {
+    color: #fff;
+    background-color: #444;
+}
+
+.select2-selection {
+    background-color: #444;
+    border-color: #555;
+}
+
+/* To handle the arrow icon */
+.select2-selection__arrow {
+    border-color: #555;
+}
+
+/* Styling the selected item when dropdown is closed */
+.select2-container .select2-selection--single {
+    background-color: #2c2c2c; /* Or any dark color of your preference */
+    color: #ffffff; /* White text */
+    border: 1px solid #444; /* Slightly brighter border for contrast */
+}
+
+/* Styling the selected item text */
+.select2-container .select2-selection--single .select2-selection__rendered {
+    color: #ffffff; /* White text */
+}
+
+/* Change the color of the dropdown arrow to white */
+.select2-container .select2-selection--single .select2-selection__arrow b {
+    border-color: #ffffff transparent transparent transparent;
+}
+
+/* Highlight state when item is focused */
+.select2-container--default.select2-container--focus .select2-selection--multiple, 
+.select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #555; /* Slightly brighter border for focus state */
+}
+
+/* Highlight state for the selected option in the dropdown */
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #555; /* Darker background for highlighted state */
+    color: #ffffff; /* White text */
+}
+
+/* Styling the text of the selected item when dropdown is closed */
+.select2-container .select2-selection--single .select2-selection__rendered {
+    color: #ffffff !important; /* White text with !important to override any other styles */
+}
+
+.privacy-reminder {
+    max-width: 70%;
+    margin: 20px auto;
+    padding: 10px;
+    border: 2px solid #69b1ff;
+    border-radius: 5px;
+    /* background-color: #f8f9fa; */
+    /* color: #6c757d; */
+    /* font-size: 0.9em; */
+}
+
+.recording-reminder {
+    max-width: 50%;
+    margin: 20px auto;
+    padding: 10px;
+    border: 2px solid #959595;
+    border-radius: 5px;
+}

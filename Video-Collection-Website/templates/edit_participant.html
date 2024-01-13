@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="center-text">Editar participante</h1>
+
+<form action="{{ url_for('edit_participant', id=participant.id) }}" method="post">
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" value="{{ participant.name }}" required>
+
+    <label for="date_of_birth">Data de nascimento:</label>
+    <input type="date" id="date_of_birth" name="date_of_birth" value="{{ participant.date_of_birth.strftime('%Y-%m-%d') }}" required>
+
+    <label for="pathology">Patologia:</label>
+    <select name="pathology" id="pathology">
+        <option value="Parkinson" {% if participant.pathology == 'Parkinson' %}selected{% endif %}>Parkinson</option>
+        <option value="Tremor Essencial" {% if participant.pathology == 'Tremor Essencial' %}selected{% endif %}>Tremor Essencial</option>
+        <option value="Outro" {% if participant.pathology == 'Outro' %}selected{% endif %}>Outro</option>
+    </select>
+
+    <label for="gender">Gênero:</label>
+    <select name="gender" id="gender">
+        <option value="F" {% if participant.gender == 'F' %}selected{% endif %}>Feminino</option>
+        <option value="M" {% if participant.gender == 'M' %}selected{% endif %}>Masculino</option>
+        <option value="O" {% if participant.gender == 'O' %}selected{% endif %}>Outro</option>
+    </select>
+
+    <input type="submit" value="Atualizar">
+</form>
+{% endblock %}

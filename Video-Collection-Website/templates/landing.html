@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="welcome-banner">
+    <img class="img-logo" src="{{ url_for('static', filename='logo_banner.png') }}" alt="Logotipo da universidade"><br>
+    
+    <h1>Seja bem-vindo à plataforma de coleta de vídeos do ambulatório de distúrbios de movimentos</h1>
+    <p>Desenvolvido na UNIRIO - Universidade Federal do Estado do Rio de Janeiro</p>
+    <p>PPGI - Programa de Pós-Graduação em Informática</p>
+    <p>HUGG - Hospital Universitário Gaffrée e Guinle</p>
+</section>
+
+{% endblock %}

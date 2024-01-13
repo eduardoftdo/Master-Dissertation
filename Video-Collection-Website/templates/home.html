@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="welcome-banner">
+    <!-- <img class="img-logo" src="{{ url_for('static', filename='logo_banner.png') }}" alt="Logotipo da universidade"><br> -->
+    
+    <h2>Olá, {{ session.user_fullname }}</h2>
+    <!-- <p>Veja abaixo as estatísticas gerais e as últimas atividades na plataforma.</p>
+    <a href="{{ url_for('static', filename='pdf/TCLE.pdf') }}" download="TCLE.pdf" class="button">Baixar TCLE</a> -->
+
+    <!-- <h1>Seja bem-vindo à plataforma de coleta de vídeos do ambulatório de distúrbios de movimentos</h1>
+    <p>Desenvolvido na UNIRIO - Universidade Federal do Estado do Rio de Janeiro</p>
+    <p>PPGI - Programa de Pós-Graduação em Informática</p>
+    <p>HUGG - Hospital Universitário Gaffrée e Guinle</p> -->
+</section>
+
+<!-- Quick Actions -->
+<!-- <section class="quick-actions"> -->
+    <!-- <a href="{{ url_for('add_participant') }}" class="action-btn">Adicionar Participantes</a> -->
+    <!-- <a href="{{ url_for('list_participants') }}" class="action-btn">Listar Participantes</a> -->
+    <!-- Assuming you have a search route set up -->
+    
+<!-- </section> -->
+
+<section class="quick-links">
+    <h3>Atalhos Rápidos</h3>
+    <div class="link" onclick="location.href='{{ url_for('add_participant') }}'">
+        <a href="{{ url_for('add_participant') }}">Adicionar Novo Participante</a>
+        <p>Registre novos participantes para começar a gravar vídeos.</p>
+    </div>
+    <div class="link" onclick="location.href='{{ url_for('list_participants') }}'">
+        <a href="{{ url_for('list_participants') }}">Ver Participantes</a>
+        <p>Visualize e gerencie todos os participantes cadastrados.</p>
+    </div>
+    <div class="link" onclick="location.href='{{ url_for('list_videos') }}'">
+        <a href="{{ url_for('list_videos') }}">Ver Vídeos</a>
+        <p>Acesse e revise os vídeos gravados por participantes.</p>
+    </div>
+    <div class="link" onclick="location.href='{{ url_for('instructions') }}'">
+        <a href="{{ url_for('instructions') }}">Gravar Vídeo</a>
+        <p>Inicie o processo de gravação de novos vídeos para análise.</p>
+    </div>
+    <div class="link" onclick="window.open('{{ url_for('static', filename='pdf/TCLE.pdf') }}', '_blank')">
+        <a target="_blank">Baixar TCLE</a>
+        <p>Faça o download do termo de uso para novos participantes.</p>
+    </div>
+</section>
+
+
+<!-- Recent Activity -->
+<section class="recent-activity">
+    <h2 class="center-text">Estatísticas</h2>
+    <!-- You'd dynamically fetch and display the last 5 participants or videos here -->
+</section>
+
+<!-- Dashboard Stats -->
+<section class="dashboard-stats">
+    <div class="stat"></div>
+    <div class="stat">
+        <h3>Total de participantes</h3>
+        <p>{{ total_participants }}</p>
+    </div>
+    <div class="stat">
+        <h3>Total de vídeos gravados</h3>
+        <p>{{ total_videos }}</p>
+    </div>
+    <div class="stat"></div>
+    <!-- <div class="stat">
+        <h3>Recent High Scoring Videos</h3>
+        <p>Top 5</p>
+    </div> -->
+</section>
+
+{% endblock %}

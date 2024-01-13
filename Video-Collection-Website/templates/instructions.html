@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="center-text">Teste de Finger Tapping</h1>
+<p class="center-text">Bata o dedo indicador no polegar como mostrado no exemplo abaixo</p>
+<p class="center-text">Abra o dedo o máximo que conseguir e faça o movimento o mais rápido possível</p>
+
+<div class="privacy-reminder center-text">
+    <p><strong>Evite mostrar seu rosto durante a gravação para preservar sua privacidade</strong></p>
+    <p>Posicione a câmera de forma a capturar apenas suas mãos</p>
+</div>
+
+<img src="{{ url_for('static', filename='example.gif') }}" alt="Exemplo de finger tapping"><br>
+
+<p class="center-text">Clique no botão ou aperte a barra de espaço para avançar</p>
+<button id="RecordBtn" class="button-block-center">Continuar</button>
+
+<!-- {% if message %}
+<script>alert('{{ message }}');</script>
+{% endif %} -->
+
+<script>
+document.getElementById('RecordBtn').addEventListener('click', function() {
+    window.location.href = '/record';
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode === 32) { //spacebar key code 32
+        event.preventDefault();
+        window.location.href = '/record';
+    }
+});
+</script>
+
+{% endblock %}

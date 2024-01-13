@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="flash-message center-text {{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %} -->
+
+<h1 class="center-text">Participante</h1><br>
+<p class="center-text"><strong>ID:</strong> {{ participant.id }}</p>
+<p class="center-text"><strong>Nome:</strong> {{ participant.name }}</p>
+<p class="center-text"><strong>Patologia:</strong> {{ participant.pathology }}</p>
+<p class="center-text"><strong>Data de nascimento:</strong> {{ participant.date_of_birth.strftime('%d/%m/%Y') }}</p>
+<p class="center-text"><strong>Gênero:</strong> {{ participant.gender }}</p>
+<br>
+<p class="center-text">Participante criado por {{ creator_name }}</p>
+<!-- You can also add links to 'Edit' or 'Delete' the participant, or display related videos here -->
+
+<!-- <a href="{{ url_for('edit_participant', id=participant.id) }}">Editar</a> |  -->
+<!-- <a href="{{ url_for('delete_participant', id=participant.id) }}" onclick="return confirm('Are you sure you want to delete this participant?')">Deletar</a> -->
+<!-- <form action="{{ url_for('delete_participant', id=participant.id) }}" method="post" onsubmit="return confirm('Tem certeza que deseja deletar o participante?')">
+    <input type="submit" value="Deletar">
+</form> -->
+
+
+<div class="center-container">
+    <a class="btn btn-edit" href="{{ url_for('edit_participant', id=participant.id) }}">Editar</a>
+
+    <form class="delete-form" action="{{ url_for('delete_participant', id=participant.id) }}" method="post" onsubmit="return confirm('Tem certeza que deseja deletar o participante?')">
+        <input class="btn btn-delete" type="submit" value="Deletar">
+    </form>
+</div>
+
+<br>
+<h3 class="center-text">Vídeos gravados pelo participante: {{ videos|length }}</h3>
+<div class="center-container">
+    <a href="{{ url_for('record', participant_id=participant.id) }}" class="btn btn-edit">Gravar vídeo para esse participante</a>
+</div>
+<br>
+<div class="video-gallery">
+    {% for video, creator_name in videos|reverse %}
+        <div class="video-item">
+            <video width="640" height="480" controls>
+                <source src="{{ url_for('uploaded_video', filename=video.url) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p class="center-text">Avaliação MDS-UPDRS: {{ video.score }}</p>
+            <p class="center-text">Comentários: {{ video.comment }}</p>
+            <p class="center-text">Gravado em: {{ video.created_at.strftime('%d/%m/%Y %H:%M:%S') }}</p>
+            <p class="center-text">Gravado por: {{ creator_name }}</p>
+        </div>
+    {% else %}
+        <p class="center-text">Nenhum vídeo encontrado desse participante</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
